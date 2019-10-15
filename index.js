@@ -19,8 +19,9 @@ app.get('/index', (req, res) => {
 });
 
 app.get('/logout', (req, res) => {
+  res.cookie('AWSELBAuthSessionCookie-0', '', { expires: new Date(Date.now() - 900000), httpOnly: true })
   res.render('logout', {    
-    headers: Object.keys(req.headers).sort().map((name) => ({ name, value: req.headers[name] }))    
+    headers: Object.keys(req.headers).sort().map((name) => ({ name, value: req.headers[name] }))
   })
 });
 
