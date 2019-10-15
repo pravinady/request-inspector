@@ -5,7 +5,15 @@ const express = require('express');
 const app = express();
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
-app.get('/index', (req, res) => {
+
+app.get('/logout', (req, res) => {  
+  res.clearCookie('AWSELBAuthSessionCookie-0')
+  res.render('logout', {    
+    headers: Object.keys(req.headers).sort().map((name) => ({ name, value: req.headers[name] }))
+  })
+});
+
+app.get('*', (req, res) => {
   res.render('index', {
     os: {
       hostname: os.hostname(),
@@ -15,14 +23,6 @@ app.get('/index', (req, res) => {
     },
     headers: Object.keys(req.headers).sort().map((name) => ({ name, value: req.headers[name] })),
     env: Object.keys(process.env).sort().map((key) => ({ key, value: process.env[key] }))
-  })
-});
-
-app.get('/logout', (req, res) => {
-  //res.cookie('AWSELBAuthSessionCookie-0', '', { expires: new Date(Date.now() - 900000), httpOnly: true })
-  res.clearCookie('AWSELBAuthSessionCookie-0')
-  res.render('logout', {    
-    headers: Object.keys(req.headers).sort().map((name) => ({ name, value: req.headers[name] }))
   })
 });
 
