@@ -12,7 +12,7 @@ app.get('/logout', (req, res) => {
 
 app.get('/logout_success', (req, res) => {  
   res.clearCookie('AWSELBAuthSessionCookie-0')
-  res.render('logout_successs', {})
+  res.render('logout_success', {})
   
 });
 
