@@ -7,10 +7,13 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 app.get('/logout', (req, res) => {  
+  res.redirect('https://pa-idps.auth0.com/logout?returnTo=https://auth0-alb-oidc-demo.identityplayground.com/logout_complete')
+});
+
+app.get('/logout_success', (req, res) => {  
   res.clearCookie('AWSELBAuthSessionCookie-0')
-  res.render('logout', {    
-    headers: Object.keys(req.headers).sort().map((name) => ({ name, value: req.headers[name] }))
-  })
+  res.render('logout_successs', {})
+  
 });
 
 app.get('*', (req, res) => {
