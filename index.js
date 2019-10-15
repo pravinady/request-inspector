@@ -7,7 +7,7 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 app.get('/logout', (req, res) => {  
-  res.redirect('https://pa-idps.auth0.com/logout?returnTo=https://auth0-alb-oidc-demo.identityplayground.com/logout_complete')
+  res.redirect('https://pa-idps.auth0.com/logout?returnTo=https://auth0-alb-oidc-demo.identityplayground.com/logout_success')
 });
 
 app.get('/logout_success', (req, res) => {  
