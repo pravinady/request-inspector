@@ -18,6 +18,12 @@ app.get('*', (req, res) => {
   })
 });
 
+app.get('/logout', (req, res) => {
+  res.render('logout', {    
+    headers: Object.keys(req.headers).sort().map((name) => ({ name, value: req.headers[name] }))    
+  })
+});
+
 const port = process.env.PORT || 8080;
 
 const server = http.createServer(app);
